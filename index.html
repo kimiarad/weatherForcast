@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body onload="todayTime()">
+    <main>
+      <div class="hero">
+        <div class="leftSide">
+          <div class="inner-div">
+            <h2 id="weekDay"></h2>
+            <span id="dayDate"></span>
+            <h2 id="cityName">Location</h2>
+            <div class="condition">
+              <img src="img/weather100.png" id="todayImg" />
+              <h2 class="temp"></h2>
+              <h2 class="weather">Temperature °C</h2>
+            </div>
+          </div>
+        </div>
+        <div class="rightSide">
+          <div class="weather-info">
+            <div class="precipitation">
+              <span class="title">Local Time</span>
+              <span class="value" id="_local"></span>
+            </div>
+            <div class="humidity">
+              <span class="title">HUMIDITY</span>
+              <span class="value" id="_humidity">%</span>
+            </div>
+            <div class="wind">
+              <span class="title">WIND</span>
+              <span class="value" id="_wind">%</span>
+            </div>
+            <div class="nextDays">
+              <div class="box">
+                <div>
+                  <img src="img/weather.png" alt="" id="sec-img"/>
+                  <p id="secondDay"></p>
+                  <p id="secTemp" class="tempNext"></p>
+                </div>
+                <div>
+                  <img src="img/weather.png" alt="" id="third-img"/>
+                  <p id="thirdDay"></p>
+                  <p id="thirdTemp" class="tempNext"></p>
+                </div>
+                <div>
+                  <img src="img/weather.png" alt="" id="fourth-img"/>
+                  <p id="fourthDay"></p>
+                  <p id="fourthTemp" class="tempNext"></p>
+                </div>
+                <div>
+                  <img src="img/weather.png" alt="" id="fifth-img" />
+                  <p id="fifthDay"></p>
+                  <p id="fifthTemp" class="tempNext"></p>
+                </div>
+              </div>
+            </div>
+            <div class="search-bar">
+              <input
+                type="text"
+                name="user"
+                id="user"
+                placeholder="Change Location"
+              />
+              <!-- <label class="l-continent" for="continent">continent:</label> -->
+              <select id="continent" name="continent">
+                <option value="Europe">Europe</option>
+                <option value="Asia">Asia</option>
+                <option value="America">America</option>
+                <option value="Africa">Africa</option>
+                <option value="Antarctica">Antarctica</option>
+                <option value="Australia">Australia</option>
+              </select>
+              <label onclick="getWeather()" id="btn" for="user">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="25"
+                  height="25"
+                  fill="currentColor"
+                  class="bi bi-search"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+                  />
+                </svg>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sign">by Kimia Mohammadi Rad</div>
+    </main>
+  </body>
+  <script>
+    let _weekDay = document.getElementById("weekDay");
+    let d = new Date();
+    let _cityName = document.getElementById("cityName");
+    let _temperature = document.getElementsByClassName("temp")[0];
+    let _weather = document.getElementsByClassName("weather")[0];
+    let _local = document.getElementById("_local");
+    let _humidity = document.getElementById("_humidity");
+    let _wind = document.getElementById("_wind");
+    let _secTemp = document.getElementById("secTemp");
+    let _thirdTemp = document.getElementById("thirdTemp");
+    let _fourthTemp = document.getElementById("fourthTemp");
+    let _fifthTemp = document.getElementById("fifthTemp");
+    let _todayImg = document.getElementById("todayImg");
+    let _secImg = document.getElementById("sec-img");
+    let _thirdImg = document.getElementById("third-img");
+    let _fourthImg = document.getElementById("fourth-img");
+    let _fifthImg = document.getElementById("fifth-img");
+    let element = document.querySelector(".inner-div");
+    let _searchBar = document.getElementById("user");
+
+    function todayTime() {
+      const week = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ];
+      const weekS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+      const months = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+      ];
+      const d = new Date();
+      let dayCode = d.getDay();
+      // console.log(dayCode)
+      _weekDay.innerHTML = week[dayCode];
+      let month = months[d.getMonth()];
+      let day = d.getDate();
+      let year = d.getFullYear();
+
+      let _daychecker = [dayCode + 1, dayCode + 2, dayCode + 3, dayCode + 4];
+      // console.log(_daychecker);
+      document.getElementById(
+        "dayDate"
+      ).innerHTML = `${day} , ${month}, ${year}`;
+      _daychecker.forEach(function (value, i) {
+        if (value > 6) {
+          // console.log(i, value);
+          //   console.log(_daychecker[i] - 7);
+          let newdt = _daychecker[i] - 7;
+          // console.log(newdt);
+          _daychecker.splice(i, 1, newdt);
+          // console.log(_daychecker);
+        }
+        document.getElementById("secondDay").innerHTML = weekS[_daychecker[0]];
+        document.getElementById("thirdDay").innerHTML = weekS[_daychecker[1]];
+        document.getElementById("fourthDay").innerHTML = weekS[_daychecker[2]];
+        document.getElementById("fifthDay").innerHTML = weekS[_daychecker[3]];
+      });
+    }
+
+    function getWeather() {
+      let _user = document.getElementById("user").value;
+      let e = document.getElementById("continent");
+      let cv = e.value;
+      let continent = e.options[e.selectedIndex].text;
+      fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${_user}&appid=1ce66df1e42bbb2f0e046d691a4c3146&units=metric`
+      )
+        .then((res) => res.json())
+        .then((val) => {
+          // console.log(val);
+          _weather.innerHTML = val.weather[0].description;
+          _cityName.innerHTML = `
+        <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-geo-alt-fill"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"
+                />
+        </svg> ${val.name}, ${val.sys.country} `;
+          weather = val.weather[0].main;
+          _temperature.innerHTML = Math.round(val.main.temp) + "°C";
+          _humidity.innerHTML = val.main.humidity + "%";
+          _wind.innerHTML = Math.round(val.wind.speed) + " km/h";
+          _todayImg.src = "img/" + weather + ".png";
+        });
+      fetch(
+        `https://api.openweathermap.org/data/2.5/forecast?q=${_user}&appid=1ce66df1e42bbb2f0e046d691a4c3146&units=metric`
+      )
+        .then((response) => response.json())
+        .then((value) => {
+          // console.log(value);
+          let cod = value.cod;
+          _secTemp.innerHTML = Math.round(value.list[12].main.temp) + "°C";
+          _thirdTemp.innerHTML = Math.round(value.list[20].main.temp) + "°C";
+          _fourthTemp.innerHTML = Math.round(value.list[28].main.temp) + "°C";
+          _fifthTemp.innerHTML = Math.round(value.list[36].main.temp) + "°C";
+          _secImg.src = "img/size50/" + value.list[12].weather[0].main + ".png";
+          _thirdImg.src =
+            "img/size50/" + value.list[20].weather[0].main + ".png";
+          _fourthImg.src =
+            "img/size50/" + value.list[28].weather[0].main + ".png";
+          _fifthImg.src =
+            "img/size50/" + value.list[36].weather[0].main + ".png";
+        });
+      console.log(_user);
+      fetch(
+        `https://timezoneapi.io/api/timezone/?${continent}/${_user}&token=akgnKTSWizBDzpHWEmcX`
+      )
+        .then((re) => re.json())
+        .then((va) => {
+          // console.log(va);
+          let timezone = va.data.datetime.time;
+          _local.innerHTML = timezone;
+          let DN = va.data.datetime.timeday_gen;
+          console.log(DN);
+          let flag = false;
+          function color() {
+            if (DN == "night" || DN == "evening") {
+              element.style.background = "var(--gradient)";
+              _searchBar.style.background = "var(--gradient)";
+            } else {
+              element.style.background = "var(--gradient2)";
+              _searchBar.style.background = "var(--gradient2)";
+            }
+            
+          }
+          color();
+          function clear() {
+            if (DN == "night" && weather == "Clear") {
+              _todayImg.src = "img/clear-night.png";
+            } else if (DN != "night" && weather == "Clear") {
+              _todayImg.src = "img/Sun.png";
+            }
+            flag = true;
+          }
+          clear()
+          console.log(flag);
+
+        });
+    }
+  </script>
+</html>

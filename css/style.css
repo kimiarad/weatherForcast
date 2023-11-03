@@ -1,0 +1,226 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700,900&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --gradient: linear-gradient(135deg, #777777 10%, #040303 100%);
+  --gradient2: linear-gradient(135deg, #f1d60b 10%, #e46211 100%);
+  --gradient3: linear-gradient(135deg, #72edf2 10%, #5151e5 100%);
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  background: #e4e4e4;
+}
+body main {
+  display: flex;
+}
+body main .hero {
+  display: flex;
+  width: 50%;
+  height: 400px;
+  background-color: #222831;
+  border-radius: 24px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+body main .hero .rightSide,
+body main .hero .leftSide {
+  border-radius: 24px;
+}
+body main .hero .leftSide {
+  width: 40%;
+  height: 100%;
+}
+body main .hero .leftSide .inner-div {
+  position: absolute;
+  width: 40%;
+  top: -18px;
+  height: 110%;
+  background: var(--gradient2);
+  transform: translateZ(0) scale(1.02) perspective(1000px);
+  border-radius: 24px;
+  transition: transform 300ms ease;
+}
+body main .hero .leftSide .inner-div:hover {
+  transform: scale(1.1) perspective(1500px) rotateY(10deg);
+}
+body main .hero .leftSide .inner-div #weekDay {
+  font-size: 24px;
+  color: white;
+  padding: 16px 24px 5px 24px;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+body main .hero .leftSide .inner-div #dayDate {
+  font-size: 18px;
+  font-weight: 300;
+  text-transform: capitalize;
+  padding: 0 24px;
+  color: white;
+}
+body main .hero .leftSide .inner-div #cityName {
+  font-size: 18px;
+  color: white;
+  padding: 5px 24px 5px 24px;
+  font-weight: 300;
+  text-transform: capitalize;
+}
+body main .hero .leftSide .inner-div .condition {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 230px;
+  padding: 0 24px 20px 20px;
+}
+body main .hero .leftSide .inner-div .condition .temp {
+  font-size: 60px;
+  color: white;
+}
+body main .hero .leftSide .inner-div .condition .weather {
+  font-size: 20px;
+  text-transform: capitalize;
+  color: white;
+}
+body main .hero .rightSide {
+  width: 60%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+body main .hero .rightSide .weather-info {
+  color: white;
+  font-size: 24px;
+  width: 85%;
+  height: 85%;
+}
+body main .hero .rightSide .weather-info .precipitation,
+body main .hero .rightSide .weather-info .humidity,
+body main .hero .rightSide .weather-info .wind {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+}
+body main .hero .rightSide .weather-info .precipitation .title,
+body main .hero .rightSide .weather-info .humidity .title,
+body main .hero .rightSide .weather-info .wind .title {
+  font-weight: bold;
+}
+body main .hero .rightSide .weather-info .humidity,
+body main .hero .rightSide .weather-info .wind {
+  padding-top: 8px;
+}
+body main .hero .rightSide .weather-info .nextDays {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body main .hero .rightSide .weather-info .nextDays .box {
+  display: flex;
+  width: 100%;
+  height: 80%;
+  background-color: #303640;
+  border-radius: 20px;
+}
+body main .hero .rightSide .weather-info .nextDays .box > div {
+  display: flex;
+  flex-wrap: wrap;
+  width: 25%;
+  height: 100%;
+  border-radius: 20px;
+  justify-content: center;
+  align-content: center;
+}
+body main .hero .rightSide .weather-info .nextDays .box > div img {
+  width: 50px;
+  height: 50px;
+  display: block;
+}
+body main .hero .rightSide .weather-info .nextDays .box > div p {
+  font-size: 20px;
+  width: 100%;
+  text-align: center;
+  padding-top: 5px;
+  text-transform: capitalize;
+}
+body main .hero .rightSide .weather-info .search-bar {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body main .hero .rightSide .weather-info .search-bar .l-continent {
+  font-size: 12px;
+  background: var(--gradient3);
+  padding: 6px 10px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+}
+body main .hero .rightSide .weather-info .search-bar #continent {
+  width: 80px;
+  margin-right: 10px;
+  border-radius: 20px;
+}
+body main .hero .rightSide .weather-info .search-bar input[type=text] {
+  width: 60%;
+  margin-right: 10px;
+  padding: 6px 24px;
+  background: var(--gradient2);
+  background-repeat: no-repeat;
+  border: none;
+  border-radius: 20px;
+  color: rgb(247, 248, 248);
+  height: 46px;
+}
+body main .hero .rightSide .weather-info .search-bar input[type=text]::-moz-placeholder {
+  text-align: center;
+  color: white;
+  font-size: 15px;
+}
+body main .hero .rightSide .weather-info .search-bar input[type=text]::placeholder {
+  text-align: center;
+  color: white;
+  font-size: 15px;
+}
+body main .hero .rightSide .weather-info .search-bar input[type=text]:focus {
+  outline: none;
+  box-shadow: none;
+  color: white;
+  font-size: 13px;
+  background: rgb(31, 32, 35);
+}
+body main .hero .rightSide .weather-info .search-bar input[type=text]:focus::-moz-placeholder {
+  color: rgba(247, 248, 248, 0.428);
+  font-size: 13px;
+}
+body main .hero .rightSide .weather-info .search-bar input[type=text]:focus::placeholder {
+  color: rgba(247, 248, 248, 0.428);
+  font-size: 13px;
+}
+body main .hero .rightSide .weather-info .search-bar #btn {
+  cursor: pointer;
+}
+body main .sign {
+  width: 100%;
+  height: 30px;
+  position: absolute;
+  bottom: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #222831;
+  color: white;
+}/*# sourceMappingURL=style.css.map */
